@@ -2,6 +2,9 @@ const http = require("node:http");
 const fs = require("node:fs");
 const path = require("node:path");
 
+const port = Number(process.env.PORT) || 3000;
+const env = process.env.NODE_ENV || "development";
+
 const server = http.createServer((req, res) => {
   let fileName;
   let statusCode;
@@ -36,6 +39,8 @@ const server = http.createServer((req, res) => {
   });
 });
 
+console.log(`Starting server in ${env} mode`);
+
 server.listen(3000, "127.0.0.1", () => {
-  console.log("Server is running at 127.0.0.1:3000");
+  console.log(`Server is running at 127.0.0.1:${port}`);
 });
